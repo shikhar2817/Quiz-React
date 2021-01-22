@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
+import { fetchQuizQuestion } from './API';
+// components
 import QuestionCard from "./components/QuestionCard";
+// types
+import { Difficulty } from './API';
 
 const TOTAL_QUESTIONS = 10; 
 
@@ -11,6 +15,8 @@ function App() {
   const [userAnswers, setUserAnswers] = useState([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true); 
+
+  console.log(fetchQuizQuestion(TOTAL_QUESTIONS,Difficulty.EASY));
 
   const startQuiz = async () => {
 
@@ -30,14 +36,14 @@ function App() {
       <button className="start" onClick={startQuiz}> Start </button>
       <p className="score"> Score: </p>
       <p className="score"> Loading Question . . . </p>
-      <QuestionCard
+      {/* <QuestionCard
         questionNumber = {number + 1}
         totalQuestions = {TOTAL_QUESTIONS}
         question={questions[number].question}
         answers={questions[number].answers}
         userAnswer = {userAnswers? userAnswers[number]: undefined}
         callback={checkAnswer}
-      />
+      /> */}
       <button className="next" onClick={nextQuestion}> Next Question </button>
     </div>
   );
